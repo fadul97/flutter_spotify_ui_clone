@@ -1,63 +1,61 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../constants/bottom_bar_items.dart';
+import '../widgets/top_album_button.dart';
 import '../constants/colors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  static const TextStyle appBarTextStyle = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 18.0,
+    color: homeTextColor,
+  );
+  static const Text appBarText = Text(
+    'Good morning',
+    textAlign: TextAlign.start,
+    style: appBarTextStyle,
+  );
+
   @override
   Widget build(BuildContext context) {
-    return buildImageButton();
-  }
-}
-
-Widget buildImageButton() {
-  const String albumName = 'Album 1 - Music';
-  double squareImage = 75.0;
-  // double? spaceBetweenImageAndText = 15.0;
-
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        backgroundColor: outlinedButtonBGColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.only(left: 30.0),
+          child: appBarText,
         ),
-        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0)
-      ),
-      onPressed: () {
-        debugPrint('$albumName Clicked!');
-      },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ClipRRect(
-            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10.0), bottomLeft: Radius.circular(10.0)),
-            child: Image.network(
-              'https://img.freepik.com/free-vector/music-speakers-album-cover-poster_1017-26877.jpg',
-              height: squareImage,
-              width: squareImage,
-              // fit: BoxFit.cover,
-            ),
-          ),
-          const SizedBox(
-            width: 10.0,
-          ),
-          const Text(
-            albumName,
-            style: TextStyle(color: outlinedButtonTxtColor, fontSize: 12.0),
-          )
-        ],
-        crossAxisAlignment: CrossAxisAlignment.center,
-      ),
-    ),
-  );
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: const [
+            TopAlbumButton(
+                albumName: 'Album 1',
+                albumImageURL:
+                    'https://img.freepik.com/free-vector/music-speakers-album-cover-poster_1017-26877.jpg'),
+            TopAlbumButton(
+                albumName: 'Album 2',
+                albumImageURL:
+                    'https://img.freepik.com/free-vector/music-speakers-album-cover-poster_1017-26877.jpg'),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: const [
+            TopAlbumButton(
+                albumName: 'Album 3',
+                albumImageURL:
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYDGZua70yg6FgZ4eeRKkX7UY_aiS481X1xQ&usqp=CAU'),
+            TopAlbumButton(
+                albumName: 'Album 4',
+                albumImageURL:
+                    'https://image.shutterstock.com/image-photo/vinyl-record-music-close-up-260nw-1731506476.jpg'),
+          ],
+        )
+      ],
+    );
+  }
 }

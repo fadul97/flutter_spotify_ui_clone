@@ -16,7 +16,6 @@ class SpotifyApp extends StatelessWidget {
         theme: spotifyThemeData,
         home: const SpotifyScaffold());
   }
-
 }
 
 

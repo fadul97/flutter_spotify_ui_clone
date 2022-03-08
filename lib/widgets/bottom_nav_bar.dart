@@ -15,6 +15,8 @@ class SpotifyScaffold extends StatefulWidget {
 
 class _SpotifyScaffoldState extends State<SpotifyScaffold> {
   int _selectedIndex = 0;
+  static String appBarText = 'Spotify UI Clone';
+  static TextStyle appBarTextStyle = const TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0);
 
   final screens = [
     const HomePage(),
@@ -27,6 +29,7 @@ class _SpotifyScaffoldState extends State<SpotifyScaffold> {
   void _onTappedItem(int index) {
     setState(() {
       _selectedIndex = index;
+      // setAppBarTextAndStyle(HomePage.appBarText, HomePage.appBarTextStyle);
     });
   }
 
@@ -34,9 +37,8 @@ class _SpotifyScaffoldState extends State<SpotifyScaffold> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Spotify UI Clone'),
-        titleTextStyle:
-        const TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+        title: Text(appBarText),
+        titleTextStyle: appBarTextStyle
       ),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -45,5 +47,10 @@ class _SpotifyScaffoldState extends State<SpotifyScaffold> {
           items: bottomItems),
       body: screens[_selectedIndex],
     );
+  }
+
+  setAppBarTextAndStyle(String text, TextStyle textStyle){
+    appBarText = text;
+    appBarTextStyle = textStyle;
   }
 }
